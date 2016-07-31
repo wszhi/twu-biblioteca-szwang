@@ -8,6 +8,7 @@ import java.util.List;
 
 public class BookAction {
     private List<BookInfo> bookInfoList = new ArrayList<>();
+    private List<BookInfo> checkOutBooks = new ArrayList<>();
     FormatPrint formatPrint = new FormatPrint();
 
     public BookAction() {
@@ -21,6 +22,10 @@ public class BookAction {
 
     public List<BookInfo> getBookInfoList() {
         return bookInfoList;
+    }
+
+    public List<BookInfo> getCheckOutBooks() {
+        return checkOutBooks;
     }
 
     public void showBookList(List<BookInfo> booksList) {
@@ -44,6 +49,7 @@ public class BookAction {
         for (BookInfo book : bookInfoList) {
             if (String.valueOf(book.getBookId()).equals(bookId)) {
                 bookInfoList.remove(book);
+                checkOutBooks.add(book);
                 exitsBook = true;
                 break;
             }
@@ -52,6 +58,23 @@ public class BookAction {
             System.out.println(Constants.CHECKOUTSUCCESSMSG);
         } else {
             System.out.println(Constants.CHECKOUTFAILMSG);
+        }
+    }
+
+    public void returnBook(String bookId) {
+        Boolean validReturnBook = false;
+        for (BookInfo book : checkOutBooks) {
+            if (String.valueOf(book.getBookId()).equals(bookId)) {
+                bookInfoList.add(book);
+                checkOutBooks.remove(book);
+                validReturnBook = true;
+                break;
+            }
+        }
+        if (validReturnBook) {
+            System.out.println(Constants.RETURNBOOKSUCCESS);
+        } else {
+            System.out.println(Constants.RETURNBOOKFAIL);
         }
     }
 }

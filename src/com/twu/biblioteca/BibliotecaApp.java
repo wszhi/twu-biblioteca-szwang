@@ -27,6 +27,10 @@ public class BibliotecaApp {
                     System.out.print(Constants.CHECKOUTTIPS);
                     bookAction.checkOutABook(reader.next());
                     break;
+                case "3":
+                    System.out.print(Constants.RETURNBOOKTIPS);
+                    bookAction.returnBook(reader.next());
+                    break;
                 case "9":
                     return;
                 default:
@@ -41,6 +45,7 @@ public class BibliotecaApp {
         List<Options> optionsList = new ArrayList<>();
         optionsList.add(new Options(1, Constants.LISTBOOKS));
         optionsList.add(new Options(2, Constants.CHECKOUTBOOKS));
+        optionsList.add(new Options(3, Constants.RETURNBOOK));
         optionsList.add(new Options(9, Constants.QUIT));
         new Options().createMenu(optionsList);
     }

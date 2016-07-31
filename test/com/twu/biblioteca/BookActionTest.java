@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BookActionTest {
     BookAction bookAction;
@@ -61,8 +59,29 @@ public class BookActionTest {
     @Test
     public void shouldShowFailMessageWhenBookIsInvalid() throws Exception {
         BookInfo book = new BookInfo(7, "Book7", "Author7", "2010-02-01");
-        bookAction.checkOutABook("7");
-        assertThat(bookAction.getBookInfoList().size(),is(6));
+        bookAction.checkOutABook(String.valueOf(book.getBookId()));
+        assertThat(bookAction.getBookInfoList().size(), is(6));
         assertTrue(bytes.toString().contains("That book is not available."));
+    }
+
+    @Test
+    public void shouldShowSuccessfulMessageWhenReturnBookSuccess() throws Exception {
+        BookInfo book = new BookInfo(1, "Think in Java", "Bruce Eckel", "2010-02-01");
+        bookAction.checkOutABook(String.valueOf(book.getBookId()));
+        assertThat(bookAction.getCheckOutBooks().size(), is(1));
+        assertEquals(1L, bookAction.getCheckOutBooks().get(0).getBookId());
+
+        bookAction.returnBook(String.valueOf(book.getBookId()));
+        assertFalse(bookAction.getCheckOutBooks().contains(book));
+        assertThat(bookAction.getBookInfoList().size(), is(6));
+        assertTrue(bytes.toString().contains("Thank you for returning the book."));
+    }
+
+    @Test
+    public void shouldShowFailMessageWhenReturnBookFail() throws Exception {
+        BookInfo book = new BookInfo(7, "Book7", "Author7", "2010-02-01");
+
+        bookAction.returnBook(String.valueOf(book.getBookId()));
+        assertTrue(bytes.toString().contains("That is not a valid book to return"));
     }
 }

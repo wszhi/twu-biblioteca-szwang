@@ -16,4 +16,8 @@ public class Constants {
     public static final String CHECKOUTTIPS = "Please input the ID of book to check out: ";
     public static final String CHECKOUTSUCCESSMSG = "Thank you! Enjoy the book.";
     public static final String CHECKOUTFAILMSG = "That book is not available.";
+    public static final String RETURNBOOK = "Return Book";
+    public static final String RETURNBOOKTIPS = "Please input the ID of book to return: ";
+    public static final String RETURNBOOKSUCCESS = "Thank you for returning the book.";
+    public static final String RETURNBOOKFAIL = "That is not a valid book to return.";
 }
