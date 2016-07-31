@@ -5,9 +5,9 @@ public class Movie {
     private String name;
     private String year;
     private String director;
-    private String rating;
+    private int rating;
 
-    public Movie(long movieId, String name, String year, String director, String rating) {
+    public Movie(long movieId, String name, String year, String director, int rating) {
         this.movieId = movieId;
         this.name = name;
         this.year = year;
@@ -47,11 +47,11 @@ public class Movie {
         this.director = director;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 }
