@@ -12,12 +12,12 @@ public class MovieAction {
     FormatPrint formatPrint = new FormatPrint();
 
     public MovieAction() {
-        this.movieList.add(new Movie(1, "Movie1", "2012", "director1",1));
-        this.movieList.add(new Movie(2, "Movie2", "2012", "director2",2));
-        this.movieList.add(new Movie(3, "Movie3", "2013", "director3",4));
-        this.movieList.add(new Movie(4, "Movie4", "2011", "director4",7));
-        this.movieList.add(new Movie(5, "Movie5", "2016", "director5",9));
-        this.movieList.add(new Movie(6, "Movie6", "2015", "director6",3));
+        this.movieList.add(new Movie(1, "Movie1", "2012", "director1", 1));
+        this.movieList.add(new Movie(2, "Movie2", "2012", "director2", 2));
+        this.movieList.add(new Movie(3, "Movie3", "2013", "director3", 4));
+        this.movieList.add(new Movie(4, "Movie4", "2011", "director4", 7));
+        this.movieList.add(new Movie(5, "Movie5", "2016", "director5", 9));
+        this.movieList.add(new Movie(6, "Movie6", "2015", "director6", 3));
     }
 
     public List<Movie> getMovieList() {
@@ -34,14 +34,14 @@ public class MovieAction {
                 + formatPrint.formatString(Constants.MOVIENAME)
                 + formatPrint.formatString(Constants.DIRECTOR)
                 + formatPrint.formatString(Constants.YEAR)
-                +formatPrint.formatString(Constants.RATING));
+                + formatPrint.formatString(Constants.RATING));
         formatPrint.drawLine();
         for (Movie movie : movies) {
             System.out.println(formatPrint.formatShortString(String.valueOf(movie.getMovieId()))
                     + formatPrint.formatString(movie.getName())
                     + formatPrint.formatString(movie.getDirector())
                     + formatPrint.formatString(movie.getYear())
-                    +formatPrint.formatString(String.valueOf(movie.getRating())));
+                    + formatPrint.formatString(String.valueOf(movie.getRating())));
         }
         formatPrint.drawLine();
     }

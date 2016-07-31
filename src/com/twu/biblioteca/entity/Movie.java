@@ -12,7 +12,9 @@ public class Movie {
         this.name = name;
         this.year = year;
         this.director = director;
-        this.rating = rating;
+        if (rating >= 1 && rating <= 10) {
+            this.rating = rating;
+        }
     }
 
     public long getMovieId() {
