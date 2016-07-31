@@ -1,12 +1,13 @@
 package com.twu.biblioteca.entity;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -17,7 +18,7 @@ public class OptionsTest {
 
     @Before
     public void setUp() throws Exception {
-        options = new Options();
+        options = new Options(1, "List Books");
         bytes = new ByteArrayOutputStream();
         console = System.out;
         System.setOut(new PrintStream(bytes));
@@ -29,9 +30,11 @@ public class OptionsTest {
     }
 
     @Test
-    public void shouldPrintListBooksMenu() throws Exception {
-        options.createMenu();
-        String menu = "List Books";
-        assertTrue(bytes.toString().contains(menu));
+    public void shouldPrintOptionsInConsole() throws Exception {
+        List<Options> optionsList = new ArrayList<Options>();
+        optionsList.add(options);
+        options.createMenu(optionsList);
+        assertTrue(bytes.toString().contains(options.getMenuName()));
+
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ShowBookList {
     private List<BookInfo> bookInfoList = new ArrayList<>();
+    FormatPrint formatPrint=new FormatPrint();
 
     public ShowBookList() {
         this.bookInfoList.add(new BookInfo(1, "Think in Java", "Bruce Eckel", "2010-02-01"));
@@ -19,25 +20,18 @@ public class ShowBookList {
     }
 
     public void showBookList() {
-        drawLine();
-        System.out.println(formatShortString(Constants.ID) + formatString(Constants.BOOKNAME)
-                + formatString(Constants.AUTHOR) + formatString(Constants.BOOKPUBDATE));
-        drawLine();
+        formatPrint.drawLine();
+        System.out.println(formatPrint.formatShortString(Constants.ID)
+                + formatPrint.formatString(Constants.BOOKNAME)
+                + formatPrint.formatString(Constants.AUTHOR)
+                + formatPrint.formatString(Constants.BOOKPUBDATE));
+        formatPrint.drawLine();
         for (BookInfo book : bookInfoList) {
-            System.out.println(formatShortString(String.valueOf(book.getBookId())) + formatString(book.getBookName())
-                    + formatString(book.getAuthor()) + formatString(book.getBookPublishDate()));
+            System.out.println(formatPrint.formatShortString(String.valueOf(book.getBookId()))
+                    + formatPrint.formatString(book.getBookName())
+                    + formatPrint.formatString(book.getAuthor())
+                    + formatPrint.formatString(book.getBookPublishDate()));
         }
-    }
-
-    private String formatString(String str) {
-        return String.format("%-30s", str);
-    }
-
-    private String formatShortString(String str) {
-        return String.format("%-10s", str);
-    }
-
-    private void drawLine() {
-        System.out.println("--------------------------------------------------------------------------------------------");
+        formatPrint.drawLine();
     }
 }

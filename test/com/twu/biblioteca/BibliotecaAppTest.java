@@ -7,6 +7,8 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.junit.Assert.assertTrue;
+
 public class BibliotecaAppTest {
     BibliotecaApp bibliotecaApp;
     PrintStream console = null;
@@ -26,7 +28,10 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shouldShowWelcomeMessage() throws Exception {
+    public void shouldPrintListBooksMenu() throws Exception {
+        bibliotecaApp.createMenu();
+        String menu = "List Books";
+        assertTrue(bytes.toString().contains(menu));
     }
 
 }

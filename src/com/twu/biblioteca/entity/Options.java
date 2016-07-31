@@ -1,5 +1,9 @@
 package com.twu.biblioteca.entity;
 
+import com.twu.biblioteca.FormatPrint;
+
+import java.util.List;
+
 public class Options {
 
     private int menuID;
@@ -22,10 +26,13 @@ public class Options {
         return menuName;
     }
 
-    public void createMenu() {
-        Options options = new Options(1, Constants.LISTBOOKS);
-        System.out.println("---------------------");
-        System.out.println("| " + options.getMenuName() + "(" + options.getMenuID() + ")" + " |");
-        System.out.println("---------------------");
+    public void createMenu(List<Options> optionses) {
+        FormatPrint formatPrint = new FormatPrint();
+        formatPrint.drawLine();
+        for (Options option : optionses) {
+            System.out.print("| " + option.getMenuName() + "(" + option.getMenuID() + ")" + " |  ");
+        }
+        System.out.println();
+        formatPrint.drawLine();
     }
 }

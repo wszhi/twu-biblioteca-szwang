@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.entity.Constants;
 import com.twu.biblioteca.entity.Options;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -11,7 +13,7 @@ public class BibliotecaApp {
 
         System.out.println(Constants.WELCOME);
         System.out.println(Constants.TIPS);
-        new Options().createMenu();
+        createMenu();
         Scanner reader = new Scanner(System.in);
         while (reader.hasNext()) {
             String menuId = reader.next();
@@ -19,6 +21,8 @@ public class BibliotecaApp {
                 case "1":
                     new ShowBookList().showBookList();
                     break;
+                case "9":
+                    return;
                 default:
                     System.out.println(Constants.INVALIDMSG);
                     break;
@@ -27,5 +31,11 @@ public class BibliotecaApp {
 
     }
 
+    public static void createMenu(){
+        List<Options> optionsList=new ArrayList<>();
+        optionsList.add(new Options(1, Constants.LISTBOOKS));
+        optionsList.add(new Options(9,Constants.QUIT));
+        new Options().createMenu(optionsList);
+    }
 
 }

@@ -11,4 +11,5 @@ public class Constants {
     public static final String TIPS = "Please chose the menu! (ps:input the number in menu)";
     public static final String INVALIDMSG = "Select a valid option!";
     public static final String LISTBOOKS = "List Books";
+    public static final String QUIT="Quit";
 }
