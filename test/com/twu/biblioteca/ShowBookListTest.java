@@ -10,13 +10,13 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertTrue;
 
 public class ShowBookListTest {
-    ShowBookList showBookList;
+    BookAction showBookList;
     PrintStream console = null;
     ByteArrayOutputStream bytes = null;
 
     @Before
     public void setUp() throws Exception {
-        showBookList = new ShowBookList();
+        showBookList = new BookAction();
         bytes = new ByteArrayOutputStream();
         console = System.out;
         System.setOut(new PrintStream(bytes));
@@ -29,14 +29,15 @@ public class ShowBookListTest {
 
     @Test
     public void shouldReturnBookListWhenCreateEntity() throws Exception {
-        showBookList.showBookList();
+
+        showBookList.showBookList(showBookList.getBookInfoList());
         String bookName = "Think in Java";
         assertTrue(bytes.toString().contains(bookName));
     }
 
     @Test
     public void shouldPrintAuthorAndPublishDateOfBook() throws Exception {
-        showBookList.showBookList();
+        showBookList.showBookList(showBookList.getBookInfoList());
         String author = "Bruce Eckel";
         String date = "2010-02-01";
         assertTrue(bytes.toString().contains(author));
