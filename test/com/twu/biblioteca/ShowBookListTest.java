@@ -16,7 +16,7 @@ public class ShowBookListTest {
 
     @Before
     public void setUp() throws Exception {
-        showBookList=new ShowBookList();
+        showBookList = new ShowBookList();
         bytes = new ByteArrayOutputStream();
         console = System.out;
         System.setOut(new PrintStream(bytes));
@@ -26,10 +26,21 @@ public class ShowBookListTest {
     public void tearDown() throws Exception {
         System.setOut(console);
     }
+
     @Test
     public void shouldReturnBookListWhenCreateEntity() throws Exception {
         showBookList.showBookList();
-        String bookName="Think in Java";
+        String bookName = "Think in Java";
         assertTrue(bytes.toString().contains(bookName));
+    }
+
+    @Test
+    public void shouldPrintAuthorAndPublishDateOfBook() throws Exception {
+        showBookList.showBookList();
+        String author = "Bruce Eckel";
+        String date = "2010-02-01";
+        assertTrue(bytes.toString().contains(author));
+        assertTrue(bytes.toString().contains(date));
+
     }
 }

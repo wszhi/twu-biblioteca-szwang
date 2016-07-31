@@ -6,11 +6,14 @@ public class BookInfo {
 
     private String bookName;
 
+    private String author;
+
     private String bookPublishDate;
 
-    public BookInfo(long bookId, String bookName, String bookPublishDate) {
+    public BookInfo(long bookId, String bookName, String author, String bookPublishDate) {
         this.bookId = bookId;
         this.bookName = bookName;
+        this.author = author;
         this.bookPublishDate = bookPublishDate;
     }
 
@@ -28,6 +31,14 @@ public class BookInfo {
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getBookPublishDate() {
