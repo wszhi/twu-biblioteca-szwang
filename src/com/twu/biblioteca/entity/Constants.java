@@ -25,10 +25,10 @@ public class Constants {
     public static final String RETURNBOOKSUCCESS = "Thank you for returning the book.";
     public static final String RETURNBOOKFAIL = "That is not a valid book to return.";
 
-    public static final String MOVIENAME= "MOVIE'S NAME";
-    public static final String YEAR= "YEAR";
-    public static final String DIRECTOR= "DIRECTOR";
-    public static final String RATING= "RATING";
+    public static final String MOVIENAME = "MOVIE'S NAME";
+    public static final String YEAR = "YEAR";
+    public static final String DIRECTOR = "DIRECTOR";
+    public static final String RATING = "RATING";
 
 
     public static final String CHECKOUTMOVIETIPS = "Please input the ID of movie to check out: ";
@@ -38,5 +38,8 @@ public class Constants {
     public static final String RETURNMOVIETIPS = "Please input the ID of movie to return: ";
     public static final String RETURNMOVIESUCCESS = "Thank you for returning the movie.";
     public static final String RETURNMOVIEFAIL = "That is not a valid movie to return.";
+
+    public static final String LOGIN = "Login";
+    public static final String LOGOUT = "Log Out";
 
 }

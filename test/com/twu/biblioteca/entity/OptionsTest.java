@@ -18,7 +18,7 @@ public class OptionsTest {
 
     @Before
     public void setUp() throws Exception {
-        options = new Options(1, "List Books");
+        options = new Options(1.1, "List Books");
         bytes = new ByteArrayOutputStream();
         console = System.out;
         System.setOut(new PrintStream(bytes));

@@ -6,19 +6,19 @@ import java.util.List;
 
 public class Options {
 
-    private int menuID;
+    private Double menuID;
 
     private String menuName;
 
     public Options() {
     }
 
-    public Options(int menuID, String menuName) {
+    public Options(Double menuID, String menuName) {
         this.menuID = menuID;
         this.menuName = menuName;
     }
 
-    public int getMenuID() {
+    public Double getMenuID() {
         return menuID;
     }
 
