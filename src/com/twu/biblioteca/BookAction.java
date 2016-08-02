@@ -44,37 +44,39 @@ public class BookAction {
         formatPrint.drawLine();
     }
 
-    public void checkOutABook(String bookId) {
-        Boolean exitsBook = false;
+    public BookInfo checkOutABook(String bookId) {
+        BookInfo exitsBook = null;
         for (BookInfo book : bookInfoList) {
             if (String.valueOf(book.getBookId()).equals(bookId)) {
                 bookInfoList.remove(book);
                 checkOutBooks.add(book);
-                exitsBook = true;
+                exitsBook = book;
                 break;
             }
         }
-        if (exitsBook) {
+        if (exitsBook != null) {
             System.out.println(Constants.CHECKOUTSUCCESSMSG);
         } else {
             System.out.println(Constants.CHECKOUTFAILMSG);
         }
+        return exitsBook;
     }
 
-    public void returnBook(String bookId) {
-        Boolean validReturnBook = false;
+    public BookInfo returnBook(String bookId) {
+        BookInfo validReturnBook = null;
         for (BookInfo book : checkOutBooks) {
             if (String.valueOf(book.getBookId()).equals(bookId)) {
                 bookInfoList.add(book);
                 checkOutBooks.remove(book);
-                validReturnBook = true;
+                validReturnBook = book;
                 break;
             }
         }
-        if (validReturnBook) {
+        if (validReturnBook != null) {
             System.out.println(Constants.RETURNBOOKSUCCESS);
         } else {
             System.out.println(Constants.RETURNBOOKFAIL);
         }
+        return validReturnBook;
     }
 }

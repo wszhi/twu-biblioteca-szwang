@@ -42,4 +42,6 @@ public class Constants {
     public static final String LOGIN = "Login";
     public static final String LOGOUT = "Log Out";
 
+    public static final String SEEMYCHECKOUTBOOKS = "See My Check Out Books";
+    public static final String SEEMYCHECKOUTMOVIES = "See My CHeck Out Movies";
 }

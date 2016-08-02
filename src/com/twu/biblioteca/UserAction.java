@@ -10,6 +10,10 @@ public class UserAction {
 
     private Users currentUser = null;
 
+    public Users getCurrentUser() {
+        return currentUser;
+    }
+
     public UserAction() {
         createUsersList();
     }
