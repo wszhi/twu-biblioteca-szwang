@@ -8,11 +8,6 @@ import java.util.List;
 public class UserAction {
     private List<Users> usersList = new ArrayList<>();
 
-    private Users currentUser = null;
-
-    public Users getCurrentUser() {
-        return currentUser;
-    }
 
     public UserAction() {
         createUsersList();
@@ -25,17 +20,12 @@ public class UserAction {
         usersList.add(new Users("111-1111", "123456", "customer", "Tom", "tom@gmail.com", "China", "13411200926"));
     }
 
-    public boolean loginAction(String libraryNumber, String password) {
+    public Users loginAction(String libraryNumber, String password) {
         for (Users users : usersList) {
             if (users.getLibraryNumber().equals(libraryNumber) && users.getPassword().equals(password)) {
-                currentUser = users;
-                return true;
+                return users;
             }
         }
-        return false;
-    }
-
-    public void logoutAction() {
-        currentUser = null;
+        return null;
     }
 }

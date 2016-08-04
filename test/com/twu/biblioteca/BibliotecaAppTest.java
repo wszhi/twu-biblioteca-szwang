@@ -29,7 +29,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldPrintListBooksMenu() throws Exception {
-        bibliotecaApp.createMenu();
+        bibliotecaApp.createTheSecondMenu();
         String menu = "List Books";
         assertTrue(bytes.toString().contains(menu));
     }

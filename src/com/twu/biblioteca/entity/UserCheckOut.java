@@ -7,6 +7,15 @@ public class UserCheckOut {
     private List<Movie> userMovieList;
     private List<BookInfo> userBookInfoList;
 
+    public UserCheckOut() {
+    }
+
+    public UserCheckOut(Users users, List<Movie> userMovieList, List<BookInfo> userBookInfoList) {
+        this.users = users;
+        this.userMovieList = userMovieList;
+        this.userBookInfoList = userBookInfoList;
+    }
+
     public Users getUsers() {
         return users;
     }

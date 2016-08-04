@@ -46,37 +46,39 @@ public class MovieAction {
         formatPrint.drawLine();
     }
 
-    public void checkOutAMovie(String movieId) {
-        Boolean exitsMovie = false;
+    public Movie checkOutAMovie(String movieId) {
+        Movie exitsMovie = null;
         for (Movie movie : movieList) {
             if (String.valueOf(movie.getMovieId()).equals(movieId)) {
                 movieList.remove(movie);
                 checkOutMovies.add(movie);
-                exitsMovie = true;
+                exitsMovie = movie;
                 break;
             }
         }
-        if (exitsMovie) {
+        if (exitsMovie != null) {
             System.out.println(Constants.CHECKOUTMOVIESUCCESSMSG);
         } else {
             System.out.println(Constants.CHECKOUTMOVIEFAILMSG);
         }
+        return exitsMovie;
     }
 
-    public void returnMovie(String movieId) {
-        Boolean validReturnMovie = false;
+    public Movie returnMovie(String movieId) {
+        Movie validReturnMovie = null;
         for (Movie movie : checkOutMovies) {
             if (String.valueOf(movie.getMovieId()).equals(movieId)) {
                 movieList.add(movie);
                 checkOutMovies.remove(movie);
-                validReturnMovie = true;
+                validReturnMovie = movie;
                 break;
             }
         }
-        if (validReturnMovie) {
+        if (validReturnMovie != null) {
             System.out.println(Constants.RETURNMOVIESUCCESS);
         } else {
             System.out.println(Constants.RETURNMOVIEFAIL);
         }
+        return validReturnMovie;
     }
 }
