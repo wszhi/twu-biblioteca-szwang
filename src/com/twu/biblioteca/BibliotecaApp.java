@@ -121,32 +121,40 @@ public class BibliotecaApp {
                     choseTheFirstMenu();
                     return;
                 case "3.1":
-                    if(isLibrarian){
-                        for(UserCheckOut userCheckOut:userCheckOutList){
-                            if(!userCheckOut.getUsers().getType().equals("librarian")) {
-                                System.out.println("customer: " + userCheckOut.getUsers().getName()
-                                        + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
-                                        + "            email: " + userCheckOut.getUsers().getEmail());
-                                bookAction.showBookList(userCheckOut.getUserBookInfoList());
-                            }
-                        }
-                    }
+                    showAllCheckOutBookInfo(isLibrarian);
                     break;
                 case "3.2":
-                    if(isLibrarian){
-                        for(UserCheckOut userCheckOut:userCheckOutList){
-                            if(!userCheckOut.getUsers().getType().equals("librarian")) {
-                                System.out.println("customer: " + userCheckOut.getUsers().getName()
-                                        + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
-                                        + "            email: " + userCheckOut.getUsers().getEmail());
-                                movieAction.showMovieList(userCheckOut.getUserMovieList());
-                            }
-                        }
-                    }
+                    showAllCheckOutMovieInfo(isLibrarian);
                     break;
                 default:
                     System.out.println(Constants.INVALIDMSG);
                     break;
+            }
+        }
+    }
+
+    private static void showAllCheckOutMovieInfo(boolean isLibrarian) {
+        if(isLibrarian){
+            for(UserCheckOut userCheckOut:userCheckOutList){
+                if(!userCheckOut.getUsers().getType().equals("librarian")) {
+                    System.out.println("customer: " + userCheckOut.getUsers().getName()
+                            + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
+                            + "            email: " + userCheckOut.getUsers().getEmail());
+                    movieAction.showMovieList(userCheckOut.getUserMovieList());
+                }
+            }
+        }
+    }
+
+    private static void showAllCheckOutBookInfo(boolean isLibrarian) {
+        if(isLibrarian){
+            for(UserCheckOut userCheckOut:userCheckOutList){
+                if(!userCheckOut.getUsers().getType().equals("librarian")) {
+                    System.out.println("customer: " + userCheckOut.getUsers().getName()
+                            + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
+                            + "            email: " + userCheckOut.getUsers().getEmail());
+                    bookAction.showBookList(userCheckOut.getUserBookInfoList());
+                }
             }
         }
     }
@@ -193,19 +201,26 @@ public class BibliotecaApp {
         optionsList.add(new Options(2.0, Constants.USERINFOR));
         optionsList.add(new Options(2.1, Constants.LISTBOOKS));
         optionsList.add(new Options(2.4, Constants.LISTMOVIES));
+        optionsList.add(new Options(2.9, Constants.LOGOUT));
+        new Options().createMenuWithOutBottomLine(optionsList);
+
         if (!isLibrarian) {
+            optionsList.clear();
             optionsList.add(new Options(2.2, Constants.CHECKOUTBOOKS));
             optionsList.add(new Options(2.3, Constants.RETURNBOOK));
             optionsList.add(new Options(2.5, Constants.CHECKOUTMOVIE));
             optionsList.add(new Options(2.6, Constants.RETURNMOVIE));
+            new Options().createMenuWithOutBottomLine(optionsList);
+            optionsList.clear();
             optionsList.add(new Options(2.7, Constants.SEEMYCHECKOUTBOOKS));
             optionsList.add(new Options(2.8, Constants.SEEMYCHECKOUTMOVIES));
+            new Options().createMenu(optionsList);
         } else {
+            optionsList.clear();
             optionsList.add(new Options(3.1, Constants.ALLCHECKOUTBOOKS));
             optionsList.add(new Options(3.2, Constants.ALLCHECKOUTMOVIES));
+            new Options().createMenu(optionsList);
         }
-        optionsList.add(new Options(2.9, Constants.LOGOUT));
-        new Options().createMenu(optionsList);
     }
 
     public static void createTheFirstMenu() {

@@ -27,12 +27,15 @@ public class Options {
     }
 
     public void createMenu(List<Options> optionses) {
+        createMenuWithOutBottomLine(optionses);
+        new FormatPrint().drawLine();
+    }
+    public void createMenuWithOutBottomLine(List<Options> optionses) {
         FormatPrint formatPrint = new FormatPrint();
         formatPrint.drawLine();
         for (Options option : optionses) {
             System.out.print("| " + option.getMenuName() + "(" + option.getMenuID() + ")" + " |  ");
         }
         System.out.println();
-        formatPrint.drawLine();
     }
 }
