@@ -29,18 +29,22 @@ public class BookAction {
     }
 
     public void showBookList(List<BookInfo> booksList) {
-        formatPrint.drawLine();
-        System.out.println(formatPrint.formatShortString(Constants.ID)
-                + formatPrint.formatString(Constants.BOOKNAME)
-                + formatPrint.formatString(Constants.AUTHOR)
-                + formatPrint.formatString(Constants.BOOKPUBDATE));
-        formatPrint.drawLine();
+        drawHeadOfBookList();
         for (BookInfo book : booksList) {
             System.out.println(formatPrint.formatShortString(String.valueOf(book.getBookId()))
                     + formatPrint.formatString(book.getBookName())
                     + formatPrint.formatString(book.getAuthor())
                     + formatPrint.formatString(book.getBookPublishDate()));
         }
+        formatPrint.drawLine();
+    }
+
+    public void drawHeadOfBookList() {
+        formatPrint.drawLine();
+        System.out.println(formatPrint.formatShortString(Constants.ID)
+                + formatPrint.formatString(Constants.BOOKNAME)
+                + formatPrint.formatString(Constants.AUTHOR)
+                + formatPrint.formatString(Constants.BOOKPUBDATE));
         formatPrint.drawLine();
     }
 

@@ -44,4 +44,7 @@ public class Constants {
 
     public static final String SEEMYCHECKOUTBOOKS = "See My Check Out Books";
     public static final String SEEMYCHECKOUTMOVIES = "See My CHeck Out Movies";
+    public static final String USERINFOR = "User Information";
+    public static final String ALLCHECKOUTBOOKS = "See All Check Out Books";
+    public static final String ALLCHECKOUTMOVIES = "See All Check Out Movies";
 }

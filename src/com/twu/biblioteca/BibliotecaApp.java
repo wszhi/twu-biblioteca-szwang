@@ -56,7 +56,8 @@ public class BibliotecaApp {
         Users currentUser = userAction.loginAction(libraryNumber, password);
         if (currentUser != null) {
             saveOrUpdateUserCheckInfo(currentUser);
-            choseTheSecondMenu();
+            boolean isLibrarian = currentUser.getType().equals("librarian") ? true : false;
+            choseTheSecondMenu(isLibrarian, false);
         } else {
             System.out.println("Login Fail !!!!");
         }
@@ -78,13 +79,16 @@ public class BibliotecaApp {
         }
     }
 
-    private static void choseTheSecondMenu() {
-        createTheSecondMenu();
+    private static void choseTheSecondMenu(boolean isLibrarian, Boolean isCheckOutList) {
+        createTheSecondMenu(isLibrarian);
         while (reader.hasNext()) {
             String menuId = reader.next();
             List<BookInfo> bookInfoList = new ArrayList<>();
             List<Movie> movieList = new ArrayList<>();
             switch (menuId) {
+                case "2.0":
+                    showUserInformation();
+                    break;
                 case "2.1":
                     bookAction.showBookList(bookAction.getBookInfoList());
                     break;
@@ -116,11 +120,44 @@ public class BibliotecaApp {
                 case "2.9":
                     choseTheFirstMenu();
                     return;
+                case "3.1":
+                    if(isLibrarian){
+                        for(UserCheckOut userCheckOut:userCheckOutList){
+                            if(!userCheckOut.getUsers().getType().equals("librarian")) {
+                                System.out.println("customer: " + userCheckOut.getUsers().getName()
+                                        + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
+                                        + "            email: " + userCheckOut.getUsers().getEmail());
+                                bookAction.showBookList(userCheckOut.getUserBookInfoList());
+                            }
+                        }
+                    }
+                    break;
+                case "3.2":
+                    if(isLibrarian){
+                        for(UserCheckOut userCheckOut:userCheckOutList){
+                            if(!userCheckOut.getUsers().getType().equals("librarian")) {
+                                System.out.println("customer: " + userCheckOut.getUsers().getName()
+                                        + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
+                                        + "            email: " + userCheckOut.getUsers().getEmail());
+                                movieAction.showMovieList(userCheckOut.getUserMovieList());
+                            }
+                        }
+                    }
+                    break;
                 default:
                     System.out.println(Constants.INVALIDMSG);
                     break;
             }
         }
+    }
+
+    private static void showUserInformation() {
+        Users users = userCheckOutList.get(positionOfCurrentUser).getUsers();
+        System.out.println("User's Library Number: " + users.getLibraryNumber());
+        System.out.println("User's Name: " + users.getName());
+        System.out.println("User's Email: " + users.getEmail());
+        System.out.println("User's Address: " + users.getAddress());
+        System.out.println("User's Phone Number: " + users.getPhoneNumber());
     }
 
     private static void returnBook(List<BookInfo> bookInfoList) {
@@ -151,16 +188,22 @@ public class BibliotecaApp {
         userCheckOutList.get(positionOfCurrentUser).setUserMovieList(movieList);
     }
 
-    public static void createTheSecondMenu() {
+    public static void createTheSecondMenu(boolean isLibrarian) {
         List<Options> optionsList = new ArrayList<>();
+        optionsList.add(new Options(2.0, Constants.USERINFOR));
         optionsList.add(new Options(2.1, Constants.LISTBOOKS));
-        optionsList.add(new Options(2.2, Constants.CHECKOUTBOOKS));
-        optionsList.add(new Options(2.3, Constants.RETURNBOOK));
         optionsList.add(new Options(2.4, Constants.LISTMOVIES));
-        optionsList.add(new Options(2.5, Constants.CHECKOUTMOVIE));
-        optionsList.add(new Options(2.6, Constants.RETURNMOVIE));
-        optionsList.add(new Options(2.7, Constants.SEEMYCHECKOUTBOOKS));
-        optionsList.add(new Options(2.8, Constants.SEEMYCHECKOUTMOVIES));
+        if (!isLibrarian) {
+            optionsList.add(new Options(2.2, Constants.CHECKOUTBOOKS));
+            optionsList.add(new Options(2.3, Constants.RETURNBOOK));
+            optionsList.add(new Options(2.5, Constants.CHECKOUTMOVIE));
+            optionsList.add(new Options(2.6, Constants.RETURNMOVIE));
+            optionsList.add(new Options(2.7, Constants.SEEMYCHECKOUTBOOKS));
+            optionsList.add(new Options(2.8, Constants.SEEMYCHECKOUTMOVIES));
+        } else {
+            optionsList.add(new Options(3.1, Constants.ALLCHECKOUTBOOKS));
+            optionsList.add(new Options(3.2, Constants.ALLCHECKOUTMOVIES));
+        }
         optionsList.add(new Options(2.9, Constants.LOGOUT));
         new Options().createMenu(optionsList);
     }
