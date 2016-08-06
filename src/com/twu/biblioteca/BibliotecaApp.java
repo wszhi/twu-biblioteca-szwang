@@ -49,9 +49,9 @@ public class BibliotecaApp {
     }
 
     private static void loginAction() {
-        System.out.println("Please input the library number:");
+        System.out.println(Constants.INPUTLIBRARYNUM);
         String libraryNumber = reader.next();
-        System.out.println("Please input the password:");
+        System.out.println(Constants.INPUTPASSWORD);
         String password = reader.next();
         Users currentUser = userAction.loginAction(libraryNumber, password);
         if (currentUser != null) {
@@ -59,7 +59,7 @@ public class BibliotecaApp {
             boolean isLibrarian = currentUser.getType().equals("librarian") ? true : false;
             choseTheSecondMenu(isLibrarian, false);
         } else {
-            System.out.println("Login Fail !!!!");
+            System.out.println(Constants.LOGINFAIL);
         }
     }
 
@@ -94,22 +94,22 @@ public class BibliotecaApp {
                     break;
                 case "2.2":
                     System.out.print(Constants.CHECKOUTTIPS);
-                    checkOutBook(bookInfoList);
+                    checkOutBook(bookInfoList, reader.next());
                     break;
                 case "2.3":
                     System.out.print(Constants.RETURNBOOKTIPS);
-                    returnBook(bookInfoList);
+                    returnBook(bookInfoList, reader.next());
                     break;
                 case "2.4":
                     movieAction.showMovieList(movieAction.getMovieList());
                     break;
                 case "2.5":
                     System.out.print(Constants.CHECKOUTMOVIETIPS);
-                    checkOutMovie(movieList);
+                    checkOutMovie(movieList, reader.next());
                     break;
                 case "2.6":
                     System.out.print(Constants.RETURNMOVIETIPS);
-                    returnMovie(movieList);
+                    returnMovie(movieList, reader.next());
                     break;
                 case "2.7":
                     bookAction.showBookList(userCheckOutList.get(positionOfCurrentUser).getUserBookInfoList());
@@ -134,9 +134,9 @@ public class BibliotecaApp {
     }
 
     private static void showAllCheckOutMovieInfo(boolean isLibrarian) {
-        if(isLibrarian){
-            for(UserCheckOut userCheckOut:userCheckOutList){
-                if(!userCheckOut.getUsers().getType().equals("librarian")) {
+        if (isLibrarian) {
+            for (UserCheckOut userCheckOut : userCheckOutList) {
+                if (!userCheckOut.getUsers().getType().equals("librarian")) {
                     System.out.println("customer: " + userCheckOut.getUsers().getName()
                             + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
                             + "            email: " + userCheckOut.getUsers().getEmail());
@@ -146,10 +146,10 @@ public class BibliotecaApp {
         }
     }
 
-    private static void showAllCheckOutBookInfo(boolean isLibrarian) {
-        if(isLibrarian){
-            for(UserCheckOut userCheckOut:userCheckOutList){
-                if(!userCheckOut.getUsers().getType().equals("librarian")) {
+    public static void showAllCheckOutBookInfo(boolean isLibrarian) {
+        if (isLibrarian) {
+            for (UserCheckOut userCheckOut : userCheckOutList) {
+                if (!userCheckOut.getUsers().getType().equals("librarian")) {
                     System.out.println("customer: " + userCheckOut.getUsers().getName()
                             + "            phone number: " + userCheckOut.getUsers().getPhoneNumber()
                             + "            email: " + userCheckOut.getUsers().getEmail());
@@ -168,31 +168,31 @@ public class BibliotecaApp {
         System.out.println("User's Phone Number: " + users.getPhoneNumber());
     }
 
-    private static void returnBook(List<BookInfo> bookInfoList) {
+    public static void returnBook(List<BookInfo> bookInfoList, String bookId) {
         bookInfoList.clear();
         bookInfoList = userCheckOutList.get(positionOfCurrentUser).getUserBookInfoList();
-        bookInfoList.remove(bookAction.returnBook(reader.next()));
+        bookInfoList.remove(bookAction.returnBook(bookId));
         userCheckOutList.get(positionOfCurrentUser).setUserBookInfoList(bookInfoList);
     }
 
-    private static void checkOutBook(List<BookInfo> bookInfoList) {
+    public static void checkOutBook(List<BookInfo> bookInfoList, String bookId) {
         bookInfoList.clear();
         bookInfoList = userCheckOutList.get(positionOfCurrentUser).getUserBookInfoList();
-        bookInfoList.add(bookAction.checkOutABook(reader.next()));
+        bookInfoList.add(bookAction.checkOutABook(bookId));
         userCheckOutList.get(positionOfCurrentUser).setUserBookInfoList(bookInfoList);
     }
 
-    private static void returnMovie(List<Movie> movieList) {
+    public static void returnMovie(List<Movie> movieList, String movieId) {
         movieList.clear();
         movieList = userCheckOutList.get(positionOfCurrentUser).getUserMovieList();
-        movieList.remove(movieAction.returnMovie(reader.next()));
+        movieList.remove(movieAction.returnMovie(movieId));
         userCheckOutList.get(positionOfCurrentUser).setUserMovieList(movieList);
     }
 
-    private static void checkOutMovie(List<Movie> movieList) {
+    public static void checkOutMovie(List<Movie> movieList, String movieId) {
         movieList.clear();
         movieList = userCheckOutList.get(positionOfCurrentUser).getUserMovieList();
-        movieList.add(movieAction.checkOutAMovie(reader.next()));
+        movieList.add(movieAction.checkOutAMovie(movieId));
         userCheckOutList.get(positionOfCurrentUser).setUserMovieList(movieList);
     }
 

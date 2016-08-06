@@ -47,4 +47,7 @@ public class Constants {
     public static final String USERINFOR = "User Information";
     public static final String ALLCHECKOUTBOOKS = "See All Check Out Books";
     public static final String ALLCHECKOUTMOVIES = "See All Check Out Movies";
+    public static final String INPUTLIBRARYNUM = "Please input the library number:";
+    public static final String INPUTPASSWORD = "Please input the password:";
+    public static final String LOGINFAIL = "Login Fail !!!!";
 }
